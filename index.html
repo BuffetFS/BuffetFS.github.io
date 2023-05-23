@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Introducing a new benchmark to enable a fair and easy comparison for few-shot cross-lingual transfer.">
+  <meta name="keywords" content="Few-shot Cross Lingual Transfer, multilingual NLP">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUFFET: Benchmarking Large Language Models for Cross-lingual Few-shot Transfer</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://akariasai.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">BUFFET: Benchmarking Large Language Models for Cross-lingual Few-shot Transfer</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://akariasai.github.io/">Akari Asai</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sneha-rk.github.io/">Sneha Kudugunta</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://velocitycavalry.github.io/">Xinyan Velocity</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://blvns.github.io/">Terra Blevins</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://gonenhila.github.io/">Hila Gone</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://machelreid.github.io/">Machel Reid</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.cs.cmu.edu/~ytsvetko/">Yulia Tsvetkov</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.ruder.io/">Sebastian Ruder</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://homes.cs.washington.edu/~hannaneh/">Hannaneh Hajishirzi</a><sup>1,3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Washington,</span>
+            <span class="author-block"><sup>2</sup>Google Research</span>
+            <span class="author-block"><sup>3</sup>Allen Institute for AI</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/clintuning/BUFFET"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">BUFFET</span> provides a fair and easy comparison across models and learning methods for few-shot cross-lingual transfer.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">How to use BUFFET</h2>
+        <div class="content has-text-justified">
+          <p>
+            You can download the BUFFET data from <a href="https://huggingface.co/datasets/clintuning/BUFFET">Huggingfafce Dataset.</a>
+          </p>
+          <script src="https://gist.github.com/AkariAsai/f9622bde3066b3c166d5e5f982303489.js"></script>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite remarkable advancements in few-shot generalization in natural language processing, the majority of models are developed and evaluated primarily in English. 
+            To enable fair model comparisons, we, therefore, propose a new benchmark, called BUFFET, which unifies 16 diverse tasks across 57 languages in a sequence-to-sequence format and provides a fixed set of few-shot examples. 
+            BUFFET is designed to establish a rigorous and equitable evaluation framework for few-shot cross-lingual transfer across a broad range of tasks and languages. 
+            Using BUFFET, we perform thorough evaluations of state-of-the-art multilingual large language models with different learning methods, namely in-context learning, and fine-tuning. 
+            Our findings reveal significant room for improvement in few-shot in-context cross-lingual transfer. In particular, ChatGPT with in-context learning often performs worse than much smaller mT5-base models fine-tuned on English task data and few-shot in-language examples. 
+            Our analysis suggests various avenues for future research in few-shot cross-lingual transfer, such as improved training, in-context learning{, and future evaluations. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<div class="container is-max-desktop">
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">The BUFFET Benchmark</h2>
+      <div class="content has-text-justified">
+        <p>
+          BUFFET unifies 16 datasets across 57 languages. 
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--/ Abstract. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Overall Model Performance</h3>
+        <div class="content has-text-justified">
+          <p>
+            Few-shot cross-lingual transfer via In-context learning still straggles. 
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+        </div>
+        <br/>
+        <!--/ Interpolating. -->
+
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Per language comparison</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+        </div>
+        <!--/ Re-rendering. -->
+        <h3 class="title is-4">High variance across different demonstrations</h3>
+        <div class="content has-text-justified">
+          <p>
+            We found that there're quite high variance across different k-shots, with more significant gap in in-context learning. 
+          </p>
+        </div>
+        <div class="content has-text-centered">
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{asai2023buffet,
+  author    = {Asai, Akari and Kudugunta, Sneha and Yu, Xinyan Velocity and Blevins, Terra and Gonen, Hila B and Reid, Machel and Tsvetkov, Yulia and Ruder, Sebastian and Hajishirzi, Hannaneh},
+  title     = {BUFFET: Benchmarking Large Language Models for Cross-lingual Few-shot Tran},
+  year      = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
