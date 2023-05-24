@@ -106,7 +106,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="./static/files/buffet_paper.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -120,7 +120,7 @@
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>arXiv (Available soon!)</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -135,7 +135,7 @@
               </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="https://huggingface.co/datasets/clintuning/BUFFET"
+                <a href="https://huggingface.co/datasets/buffet/BUFFET"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
@@ -155,12 +155,12 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">BUFFET</span> provides a fair and easy comparison across models and learning methods for few-shot cross-lingual transfer.
+        <span class="dnerf">BUFFET</span> is a new benchmark for a fair and scalable evaluation of few-shot cross-lingual transfer, covering 15 diverse tasks and 55 typologically diverse languages. 
       </h2>
+      <img src="static/imgs/buffet_teaser_v2.png" alt="BUFFET teaser.">
     </div>
   </div>
 </section>
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -169,7 +169,7 @@
         <h2 class="title is-3">How to use BUFFET</h2>
         <div class="content has-text-justified">
           <p>
-            You can download the BUFFET data from <a href="https://huggingface.co/datasets/clintuning/BUFFET">Huggingfafce Dataset.</a>
+            You can download the BUFFET data from <a href="https://huggingface.co/datasets/clintuning/BUFFET">Huggingface Dataset.</a>
           </p>
           <script src="https://gist.github.com/AkariAsai/f9622bde3066b3c166d5e5f982303489.js"></script>
         </div>
@@ -177,8 +177,6 @@
     </div>
     <!--/ Abstract. -->
 </section>
-
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -207,8 +205,10 @@
       <h2 class="title is-3">The BUFFET Benchmark</h2>
       <div class="content has-text-justified">
         <p>
-          BUFFET unifies 16 datasets across 57 languages. 
+        <b>BUFFET</b> (<b>B</b>enchmark of <b>U</b>nified <b>F</b>ormat <b>FE</b>w-shot <b>T</b>ransfer Evaluation) is designed to enable rigorous evaluations and advance research on few-shot cross-lingual transfer. 
+          Similar to a rich buffet, <b>BUFFET</b> curates a diverse mix of tasks: 15 different tasks---including classification, structured prediction, and natural language generation---across 55 languages. 
         </p>
+        <img src="static/imgs/buffet_overview.png" alt="BUFFET overview.">
       </div>
     </div>
   </div>
@@ -217,18 +217,23 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-
     <!-- Animation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Results</h2>
-
+        <h2 class="title is-3">Main Results</h2>
         <!-- Interpolating. -->
-        <h3 class="title is-4">Overall Model Performance</h3>
+        <!-- <h3 class="title is-4">Overall Model Performance</h3> -->
         <div class="content has-text-justified">
           <p>
-            Few-shot cross-lingual transfer via In-context learning still straggles. 
+          We study <b>6</b> different language (e.g., <a href="https://arxiv.org/abs/2010.11934">mT5</a>, <a href="https://arxiv.org/abs/2211.01786">BLOOMZ</a> and <a href="https://openai.com/blog/chatgpt">ChatGPT</a> models and diverse transfer methods, including both <b>fine-tuning (FT)</b> and <b>in-context learning (ICL)</b>). 
           </p>
+          <img src="static/imgs/overall_results.png" alt="buffet results." width="800" height="800"> 
+          <ul>
+            <li>Under the comparable few-shot setup (e.g., a model has access to only 32 examples written in a target language), we found that <b>much smaller fine-tuned models (mT5-base) often outperforms SOTA LLMs including ChatGPT</b>. </li>
+            <li>Instruction-tuned LLMs, particularly ChatGPT, are competitive in <b>high resource (HR) languages</b>, <b>the tasks that require generations in the target languages, or the tasks with limited data even in resource-rich languages</b>.</li>
+            <li>In <b>less-represented (lowe-resource; LR) languages</b>, such LLMs with ICL struggles a lot, while <b>a smaller fine-tuned models trained on 32 examples can retain competitive performance</b> (e.g., outperform ChatGPT by 10% on NLI in some indigenous languages of the Americas).</li>
+          </ul>
+          <img src="static/imgs/buffet_lang.png" alt="buffet results.">
         </div>
         <div class="columns is-vcentered interpolation-panel">
         </div>
@@ -236,36 +241,50 @@
         <!--/ Interpolating. -->
 
         <!-- Re-rendering. -->
-        <h3 class="title is-4">Per language comparison</h3>
+        <h2 class="title is-3">Analysis</h2>
         <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
         </div>
         <div class="content has-text-centered">
         </div>
         <!--/ Re-rendering. -->
-        <h3 class="title is-4">High variance across different demonstrations</h3>
+        <h3 class="title is-4">High variance across different demonstrations.</h3>
         <div class="content has-text-justified">
           <p>
-            We found that there're quite high variance across different k-shots, with more significant gap in in-context learning. 
-          </p>
+            All transfer methods show high performance variance across different k-shot samples, with more significant gap in ICL methods. 
+            </p>
+            <img src="static/imgs/demo_variance.png" alt="buffet results.">
+        </div>
+        <h3 class="title is-4">The optimal configuration for transferring varies among different models.</h3>
+        <div class="content has-text-justified">
+          <p>
+          We also found that while in fine-tuning adding more demonstrations often helps, in ICL adding more demonstrations can hurt performance, especially in instruction-tuned LLMs. 
+            </p>
+            <img src="static/imgs/otimal_demo.png" alt="buffet results.">
         </div>
         <div class="content has-text-centered">
         </div>
-
       </div>
     </div>
-    <!--/ Animation. -->
 
+    <section class="section" id="future">
+      <div class="container is-max-desktop content">
+        <h2 class="title">Moving Forward</h2>
+        <p>Based on BUFFET and large-scale experiments, we suggest exciting opportunities for future research in the field of few-shot learning transfer across diverse languages. In summary:</p>
+        <ul>
+          <li><b>Improve instruction-tuning for better cross-lingual transfer</b></li>
+          <li><b>Expand evaluations to more diverse tasks (generations, reasoning and knowledge) and languages (diverse local languages, including under-represented languages and their dialects)</b></li>
+          <li><b>Overcome data scarcity using LLMs</b></li>
+        </ul>
+        <p>More detailed discussions are in our paper.</p>
+      </div>
+    </section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{asai2023buffet,
   author    = {Asai, Akari and Kudugunta, Sneha and Yu, Xinyan Velocity and Blevins, Terra and Gonen, Hila B and Reid, Machel and Tsvetkov, Yulia and Ruder, Sebastian and Hajishirzi, Hannaneh},
-  title     = {BUFFET: Benchmarking Large Language Models for Cross-lingual Few-shot Tran},
+  title     = {{BUFFET}: Benchmarking Large Language Models for Cross-lingual Few-shot Transfer},
   year      = {2023},
 }</code></pre>
   </div>
@@ -276,10 +295,10 @@
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
+         href="./static/files/buffet_paper.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+      <a class="icon-link" href="https://akariasai.github.io/" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
